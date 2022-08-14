@@ -26,6 +26,15 @@ var firebaseConfig = {
         
             window.location = "kwitter_page.html";
       }
+   function send(){
+            msg = document.getElementById("message").value ;
+            firebase.database().ref(room_name).push({
+                  name : user_name,
+                  message : msg,
+                  likes : 0
+            });
+            document.getElementById("message").value = "";
+      }
 
 function getData() {firebase.database().ref("/").on('value', function(snapshot) {document.getElementById("output").innerHTML = "";snapshot.forEach(function(childSnapshot) {childKey  = childSnapshot.key;
        Room_names = childKey;
